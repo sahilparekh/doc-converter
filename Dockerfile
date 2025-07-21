@@ -23,6 +23,8 @@ WORKDIR /app
 
 RUN apt-get update && apt-get install -y libreoffice fonts-thai-tlwg
 
+RUN apt-get install -y libemail-outlook-message-perl unrtf
+
 COPY fonts /usr/share/fonts/custom
 
 RUN fc-cache -fv
