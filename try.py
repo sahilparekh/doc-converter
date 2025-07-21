@@ -3,7 +3,7 @@ import requests
 # Test for .msg file
 url = "http://localhost:80/msg-to-txt"
 files = {'file': open('/Users/konsultera/Documents/projects/pdf-converter/LamdaTest_UnitedLayer_nbarat_native_3_ekmt001_00014409.msg', 'rb')}
-headers = {"X-API-Key": "0f4b7a98e3c14f66b7d3a9c1e8f2bde1c86c59d8a73245fc9edb1a7df9246c5a"}
+headers = {"X-API-Key": "<api key>"}
 
 response = requests.post(url, files=files, headers=headers)
 print(response.content)
