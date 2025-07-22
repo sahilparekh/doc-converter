@@ -301,11 +301,21 @@ func handleMsgToTxt(w http.ResponseWriter, r *http.Request) {
 	if body == "" {
 		body = "(no body content)\n"
 	}
+
+	// Remove specific lines from the output
+	lines := strings.Split(body, "\n")
+	filteredLines := []string{}
+	for _, line := range lines {
+		if !strings.Contains(line, "Translation from RTF performed by UnRTF") &&
+			!strings.Contains(line, "font table contains 4 fonts tota") {
+			filteredLines = append(filteredLines, line)
+		}
+	}
+	body = strings.Join(filteredLines, "\n")
+
 	fmt.Fprint(w, body)
-	return
 }
 
-// cleanupOldFiles removes files older than the specified duration from the given directory
 func cleanupOldFiles(dir string, maxAge time.Duration) {
 	for {
 		time.Sleep(1 * time.Hour) // Check every minute
